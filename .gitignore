@@ -1,0 +1,6 @@
+.idea/
+app/static/thumb/
+app/users/__pycache__/
+__pycache__/
+app.db
+app/static/booruimg/
