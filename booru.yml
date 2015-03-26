@@ -12,7 +12,7 @@ folder_thumbs: thumb
 # this value allows you to set how many images are displayed on a page.
 images_per_page: 20
 
-# this value allows you to set the namespaces you would like to use in the application. use all lowercase letters or your namespace will not work.
+# this value allows you to set the namespaces you would like to use in the application.
 # note that the general and system namespaces are hardcoded in and that you will have to add css to color your namespaces.
 namespaces: [artist, character, series]
 

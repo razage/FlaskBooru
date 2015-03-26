@@ -2,7 +2,7 @@ from app import db
 from app.users.models import User
 
 imagetagstable = db.Table("imagetags", db.Column("image", db.String(32), db.ForeignKey('images.imgname')),
-                          db.Column("tag", db.String(32), db.ForeignKey('tags.tagname')))
+                          db.Column("tag", db.Integer, db.ForeignKey('tags.tagid')))
 
 
 class Images(db.Model):
@@ -25,8 +25,9 @@ class Images(db.Model):
 
 class Tags(db.Model):
     __tablename__ = "tags"
-    tagname = db.Column(db.String(32), primary_key=True)
-    tagnamespace = db.Column(db.String(32), primary_key=True)
+    tagid = db.Column(db.Integer, primary_key=True)
+    tagname = db.Column(db.String(32), nullable=False)
+    tagnamespace = db.Column(db.String(32), nullable=False)
 
     def __init__(self, tagname, tagnamespace):
         self.tagname = tagname

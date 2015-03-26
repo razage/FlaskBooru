@@ -12,7 +12,9 @@ SQLALCHEMY_DATABASE_URI = "sqlite:///" + join(basedir, 'app.db')
 # load booru.yml and adjust settings accordingly
 with open(join(basedir, 'booru.yml')) as cfg:
     _tmpdata = load(cfg)
-    ALLOWEDTYPES = _tmpdata['allowed_extensions']
+    ALLOWEDTYPES = []
+    for ext in range(len(_tmpdata['allowed_extensions'])):
+        ALLOWEDTYPES.append(_tmpdata['allowed_extensions'][ext].lower())
 
     CONTENTLEVELS = _tmpdata['content_levels']
 
@@ -24,7 +26,9 @@ with open(join(basedir, 'booru.yml')) as cfg:
     IMAGETEMPNAME = _tmpdata['folder_temp']
     IMAGETEMP = join(basedir, "app", "static", IMAGETEMPNAME)
 
-    NAMESPACES = _tmpdata['namespaces']
+    NAMESPACES = []
+    for ns in range(len(_tmpdata['namespaces'])):
+        NAMESPACES.append(_tmpdata['namespaces'][ns].lower())
 
     SITENAME = _tmpdata['sitename']
 

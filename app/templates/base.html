@@ -9,8 +9,11 @@
         <div class="header">
             <h2 class="sitetitle">{{ config['SITENAME'] }}</h2>
             <ul class="navbar">
-                <li>Login</li>
-                <li>Images</li>
+                <li>Profile</li>
+                <li><a href="{{ url_for('images.imageindex', page=1) }}">Images</a></li>
+                <li>Tags</li>
+                <li>Statistics</li>
+                <li>About</li>
             </ul>
         </div>
         {% with messages = get_flashed_messages() %}

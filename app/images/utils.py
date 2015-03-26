@@ -10,21 +10,32 @@ from app import app, db
 
 
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1] in app.config["ALLOWEDTYPES"]
+    nameparts = filename.split(".")
+    if len(nameparts) > 2:
+        return False
+    else:
+        if nameparts[1].lower() in app.config["ALLOWEDTYPES"]:
+            return True
+        else:
+            return False
 
 
 def applytags(image, taglist):
-    print(taglist)
     alltags = db.session.query(Tags)
-    for t in range(len(taglist)):
-        try:
-            _test = alltags.filter(Tags.tagname == taglist[t][1]).one()
-            image.tags.append(_test)
-        except NoResultFound:
-            db.session.add(Tags(taglist[t][1], taglist[t][0]))
-            db.session.commit()
-            image.tags.append(alltags.filter(Tags.tagname == taglist[t][1]).one())
-            db.session.commit()
+    if ['general', ''] in taglist:
+        flag = alltags.filter(Tags.tagname == "tagme").one()
+        image.tags.append(flag)
+        db.session.commit()
+    else:
+        for t in range(len(taglist)):
+            try:
+                _test = alltags.filter(Tags.tagname == taglist[t][1]).one()
+                image.tags.append(_test)
+            except NoResultFound:
+                db.session.add(Tags(taglist[t][1], taglist[t][0]))
+                db.session.commit()
+                image.tags.append(alltags.filter(Tags.tagname == taglist[t][1]).one())
+                db.session.commit()
 
 
 def getimagehash(image):

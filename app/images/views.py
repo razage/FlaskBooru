@@ -12,6 +12,7 @@ from .models import Images
 from .utils import allowed_file, applytags, getimagehash, makethumbnail, moveimage, parsetags
 from app import app, db
 
+
 mod = Blueprint('images', __name__, url_prefix="/images")
 
 
@@ -30,7 +31,7 @@ def upload():
     form = ImageUploadForm()
     if form.validate_on_submit():
         img = request.files['image']
-        if img and allowed_file(img.filename):
+        if img and allowed_file(img.filename.lower()):
             tmpfilename = secure_filename(img.filename)
             img.save(join(app.config["IMAGETEMP"], tmpfilename))
             finalname = "%s.%s" % (getimagehash(open(join(app.config["IMAGETEMP"], tmpfilename), 'rb').read()), tmpfilename.split(".")[1])
@@ -41,10 +42,7 @@ def upload():
                 db.session.commit()
                 moveimage(tmpfilename, finalname)
                 imagefortagging = db.session.query(Images).filter(Images.imgname == finalname).one()
-                if form.tagfield.data == "":
-                    applytags(imagefortagging, [["system", "tagme"]])
-                else:
-                    applytags(imagefortagging, parsetags(form.tagfield.data))
+                applytags(imagefortagging, parsetags(form.tagfield.data))
                 makethumbnail(finalname)
                 return redirect(url_for("images.upload"))
             remove(join(app.config["IMAGETEMP"], tmpfilename))
