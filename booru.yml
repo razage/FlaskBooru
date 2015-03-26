@@ -1,0 +1,20 @@
+# this value allows you to set what type of files are allowed to be uploaded to the application.
+allowed_extensions: [gif, jpeg, jpg, png]
+
+# this value allows you to set how many content levels are used by the application and what they are called.
+content_levels: [[0, Pure], [1, Ecchi Sketchy], [2, L-lewd]]
+
+# this value allows you to set the folders this applicatoin uses.
+folder_images: booruimg
+folder_temp: tmp
+folder_thumbs: thumb
+
+# this value allows you to set how many images are displayed on a page.
+images_per_page: 20
+
+# this value allows you to set the namespaces you would like to use in the application. use all lowercase letters or your namespace will not work.
+# note that the general and system namespaces are hardcoded in and that you will have to add css to color your namespaces.
+namespaces: [artist, character, series]
+
+# this value allows you to set the site name. this is displayed above the navbar and used throughout the application
+sitename: FlaskBooru

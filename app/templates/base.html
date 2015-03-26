@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+        <meta charset="utf-8">
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <div class="header">
+            <h2 class="sitetitle">{{ config['SITENAME'] }}</h2>
+            <ul class="navbar">
+                <li>Login</li>
+                <li>Images</li>
+            </ul>
+        </div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        <div class="content">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

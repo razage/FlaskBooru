@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="sidebar">
+        <ul class="taglist">
+            {% for t in images %}
+                {% for tag in t.tags %}
+                    <li class="namespace-{{ tag.tagnamespace }}">{{ tag.tagname }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
