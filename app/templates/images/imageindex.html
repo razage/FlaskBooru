@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="sidebar">
+        <div class="searchform">
+            <h5>Search</h5>
+            <form action="." method="post">
+                <input type="text" name="searchstring">
+                <br />
+                <input type="submit" value="Search">
+            </form>
+        </div>
+        <h5>Tags</h5>
         <ul class="taglist">
             {% for t in images %}
                 {% for tag in t.tags %}
@@ -8,5 +17,10 @@
                 {% endfor %}
             {% endfor %}
         </ul>
+    </div>
+    <div class="images">
+        {% for i in images %}
+            <span class="thumbnail"><img src="{{ url_for('static', filename=config['THUMBFOLDERNAME'] + '/' + i.imgname) }}"></span>
+        {% endfor %}
     </div>
 {% endblock %}

@@ -4,21 +4,28 @@ body, div, h1, h2, h3, h4, h5, h6, p, ul, li {
     padding: 0;
 }
 
+h5, ul.taglist > li {
+    font-size: 1.2em;
+}
+
+input {
+    padding: 0 0.3em;
+}
+
 .header {
     background: #34495E;
     color: #FFFFFF;
     margin-bottom: 1em;
-    padding: 10px 20px 0 20px;
+    padding: 0.625em 1.25em 0.625em 1.25em;
 }
 
 h2.sitetitle {
-    padding-right: inherit;
     float: left;
 }
 
 .navbar {
     margin: 0;
-    padding: 5px 20px 3px 10px;
+    padding: 0.313em 1.25em 0.188em 0.625em;
 }
 
 .navbar li {
@@ -26,7 +33,7 @@ h2.sitetitle {
     font-weight: bold;
     list-style-type: none;
     margin: 0;
-    padding: 2px 10px 3px 10px;
+    padding: 0.125em 0.625em 0.188em 0.625em;
     font-size: 100%;
 }
 
@@ -44,15 +51,27 @@ h2.sitetitle {
     margin-right: 1em;
     overflow: visible;
     width: 20%;
+    font-size: 80%;
+}
+
+.searchform {
+    margin-bottom: 1em;
+}
+
+.searchform input[type="text"] {
+    width: 8.875em;
+}
+
+.searchform input[type="submit"] {
+    margin-top: 0.188em;
+    background: #FFFFFF;
+    border: 1px solid #DADADA;
+    width: 9.735em;
 }
 
 ul.taglist {
     list-style-type: none;
     margin: 0;
-}
-
-.img-thumbnail:hover {
-    opacity: 0.5;
 }
 
 .namespace-artist {
@@ -73,4 +92,29 @@ ul.taglist {
 
 .namespace-system {
     color: #FAC528;
+}
+
+.images {
+    float: left;
+    margin: 0;
+    width: 77%;
+}
+
+.thumbnail {
+    display: inline-block;
+    float: left;
+    height: 200px;
+    width: 200px;
+    margin: 0.125em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.thumbnail:hover {
+    opacity: 0.5;
+}
+
+.thumbnail img {
+    border: 1px solid #000000;
+    margin: auto;
 }
