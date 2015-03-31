@@ -1,0 +1,13 @@
+{% extends "images/boorubase.html" %}
+{% block tags %}
+    {% for t in image.tags %}
+        <li class="namespace-{{ t.tagnamespace }}">{{ t.tagname }}</li>
+    {% endfor %}
+{% endblock %}
+{% block images %}
+    {% if resize %}
+        <img class="resized" src="{{ url_for('static', filename=config['IMAGEFOLDERNAME'] + '/' + image.imgname) }}">
+    {% else %}
+        <img src="{{ url_for('static', filename=config['IMAGEFOLDERNAME'] + '/' + image.imgname) }}">
+    {% endif %}
+{% endblock %}

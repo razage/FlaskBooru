@@ -1,11 +1,13 @@
-from flask import abort, flash, g, redirect, render_template, url_for
+from flask import Blueprint, flash, g, redirect, render_template, request, url_for
 from flask_login import login_required, login_user, logout_user
 from werkzeug.security import check_password_hash
 
-from . import mod
 from .forms import LoginForm
 from .models import User
-from app import app, db, lm
+from app import lm
+
+
+mod = Blueprint('users', __name__, url_prefix="/users")
 
 
 @lm.user_loader
@@ -23,13 +25,11 @@ def login():
         if user is not None:
             if check_password_hash(user.password, form.password.data):
                 login_user(user, remember=form.remember_me.data)
-                return redirect(url_for('home'))
+                return redirect(request.args.get('next') or url_for('home'))
             else:
                 flash("Incorrect login!", "error")
-                print("Incorrect login!")
         else:
             flash("User doesn't exist!", "error")
-            print("User doesn't exist")
     return render_template("users/login.html", title="Login", form=form)
 
 

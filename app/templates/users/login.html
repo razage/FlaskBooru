@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-    <form method="post" action="">
+    <form method="post" action="{{ url_for('users.login') if request.args.get('next') == None else url_for('users.login', next=request.args.get('next')) }}">
         {{ form.hidden_tag() }}
         <p>{{ form.username.label }}: {{ form.username }}</p>
         <p>{{ form.password.label }}: {{ form.password }}</p>

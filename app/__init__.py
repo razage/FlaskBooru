@@ -32,7 +32,7 @@ def home():
 
 
 from app.images.views import mod as imagemod
-from app.users import mod as usermod
+from app.users.views import mod as usermod
 
 app.register_blueprint(imagemod)
 app.register_blueprint(usermod)

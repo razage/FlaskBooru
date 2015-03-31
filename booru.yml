@@ -12,6 +12,16 @@ folder_thumbs: thumb
 # this value allows you to set how many images are displayed on a page.
 images_per_page: 20
 
+# this value allows you to configure which pages require a user to be logged in.
+login_required:
+    imagelist: False
+    imageview: False
+    statistics: False
+    upload: True
+
+# this value allows you to set the max size an image can be (width x height)
+max_dimensions: [800, 600]
+
 # this value allows you to set the namespaces you would like to use in the application.
 # note that the general and system namespaces are hardcoded in and that you will have to add css to color your namespaces.
 namespaces: [artist, character, series]

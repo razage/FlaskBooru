@@ -106,15 +106,23 @@ ul.taglist {
     height: 200px;
     width: 200px;
     margin: 0.125em;
+    padding: 0.5em;
     text-align: center;
     vertical-align: middle;
 }
 
 .thumbnail:hover {
+    cursor: pointer;
     opacity: 0.5;
 }
 
 .thumbnail img {
     border: 1px solid #000000;
     margin: auto;
+}
+
+.resized {
+    border: 2px solid #FF0000;
+    width: 800px;
+    height: 600px;
 }

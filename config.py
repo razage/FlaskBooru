@@ -26,6 +26,10 @@ with open(join(basedir, 'booru.yml')) as cfg:
     IMAGETEMPNAME = _tmpdata['folder_temp']
     IMAGETEMP = join(basedir, "app", "static", IMAGETEMPNAME)
 
+    LOGINREQUIRED = _tmpdata['login_required']
+
+    MAXIMAGESIZE = tuple(_tmpdata['max_dimensions'])
+
     NAMESPACES = []
     for ns in range(len(_tmpdata['namespaces'])):
         NAMESPACES.append(_tmpdata['namespaces'][ns].lower())
