@@ -3,4 +3,3 @@ flask-login
 flask-sqlalchemy
 flask-wtf
 pillow
-pyyaml

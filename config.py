@@ -1,40 +1,48 @@
+from json import dump, load
 from os.path import abspath, dirname, join
-
-from yaml import load
+from random import SystemRandom
 
 basedir = abspath(dirname(__file__))
 
+try:
+    settings = load(open(join(basedir, 'booru.json')))
+except IOError:
+    skey = ''.join([SystemRandom().choice('abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)') for i in range(50)])
+    settings = {'secret_key': skey, 'allowed_extensions': ['gif', 'jpeg', 'jpg', 'png'],
+                'content_levels': [[0, 'Pure'], [1, 'Ecchi Sketchy'], [2, 'L-lewd']], 'folder_images': 'booruimg',
+                'folder_temp': 'tmp', 'folder_thumbs': 'thumb', 'images_per_page': 20,
+                'login_required': {'imagelist': False, 'imageview': False, 'statistics': False, 'upload': True},
+                'max_dimensions': (800, 600), 'namespaces': ['artist', 'character', 'series'], 'sitename': 'FlaskBooru'}
+    dump(settings, open(join(basedir, 'booru.json'), 'w'))
+
 WTF_CSRF_ENABLED = True
-SECRET_KEY = "a secure string"
+SECRET_KEY = settings['secret_key']
 
 SQLALCHEMY_DATABASE_URI = "sqlite:///" + join(basedir, 'app.db')
 
-# load booru.yml and adjust settings accordingly
-with open(join(basedir, 'booru.yml')) as cfg:
-    _tmpdata = load(cfg)
-    ALLOWEDTYPES = []
-    for ext in range(len(_tmpdata['allowed_extensions'])):
-        ALLOWEDTYPES.append(_tmpdata['allowed_extensions'][ext].lower())
+ALLOWEDTYPES = []
+for ext in range(len(settings['allowed_extensions'])):
+    ALLOWEDTYPES.append(settings['allowed_extensions'][ext].lower())
 
-    CONTENTLEVELS = _tmpdata['content_levels']
+CONTENTLEVELS = settings['content_levels']
 
-    IMAGEFOLDERNAME = _tmpdata['folder_images']
-    IMAGEFOLDER = join(basedir, "app", "static", IMAGEFOLDERNAME)
+IMAGEFOLDERNAME = settings['folder_images']
+IMAGEFOLDER = join(basedir, "app", "static", IMAGEFOLDERNAME)
 
-    IMAGESPERPAGE = _tmpdata['images_per_page']
+IMAGESPERPAGE = settings['images_per_page']
 
-    IMAGETEMPNAME = _tmpdata['folder_temp']
-    IMAGETEMP = join(basedir, "app", "static", IMAGETEMPNAME)
+IMAGETEMPNAME = settings['folder_temp']
+IMAGETEMP = join(basedir, "app", "static", IMAGETEMPNAME)
 
-    LOGINREQUIRED = _tmpdata['login_required']
+LOGINREQUIRED = settings['login_required']
 
-    MAXIMAGESIZE = tuple(_tmpdata['max_dimensions'])
+MAXIMAGESIZE = tuple(settings['max_dimensions'])
 
-    NAMESPACES = []
-    for ns in range(len(_tmpdata['namespaces'])):
-        NAMESPACES.append(_tmpdata['namespaces'][ns].lower())
+NAMESPACES = []
+for ns in range(len(settings['namespaces'])):
+    NAMESPACES.append(settings['namespaces'][ns].lower())
 
-    SITENAME = _tmpdata['sitename']
+SITENAME = settings['sitename']
 
-    THUMBFOLDERNAME = _tmpdata['folder_thumbs']
-    THUMBFOLDER = join(basedir, "app", "static", THUMBFOLDERNAME)
+THUMBFOLDERNAME = settings['folder_thumbs']
+THUMBFOLDER = join(basedir, "app", "static", THUMBFOLDERNAME)

@@ -9,23 +9,24 @@ h5, ul.taglist > li {
 }
 
 input {
-    padding: 0 0.3em;
+    padding: 0 4px;
 }
 
 .header {
     background: #34495E;
     color: #FFFFFF;
     margin-bottom: 1em;
-    padding: 0.625em 1.25em 0.625em 1.25em;
+    padding: 10px 20px 10px 20px;
 }
 
 h2.sitetitle {
     float: left;
+    padding-right: 10px;
 }
 
 .navbar {
     margin: 0;
-    padding: 0.313em 1.25em 0.188em 0.625em;
+    padding: 5px 20px 3px 10px;
 }
 
 .navbar li, #contentlevel li {
@@ -33,7 +34,7 @@ h2.sitetitle {
     font-weight: bold;
     list-style-type: none;
     margin: 0;
-    padding: 0.125em 0.625em 0.188em 0.625em;
+    padding: 2px 10px 3px 10px;
     font-size: 100%;
 }
 
@@ -59,14 +60,14 @@ h2.sitetitle {
 }
 
 .searchform input[type="text"] {
-    width: 8.875em;
+    width: 142px;
 }
 
 .searchform input[type="submit"] {
-    margin-top: 0.188em;
+    margin-top: 3px;
     background: #FFFFFF;
     border: 1px solid #DADADA;
-    width: 9.735em;
+    width: 155px;
 }
 
 ul.taglist {
@@ -105,7 +106,7 @@ ul.taglist {
     float: left;
     height: 200px;
     width: 200px;
-    margin: 0.125em;
+    margin: 2px;
     padding: 0.5em;
     text-align: center;
     vertical-align: middle;
