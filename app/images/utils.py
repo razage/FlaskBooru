@@ -21,20 +21,19 @@ def allowed_file(filename):
 
 
 def applytags(image, taglist):
-    alltags = db.session.query(Tags)
     if ['general', ''] in taglist:
-        flag = alltags.filter(Tags.tagname == "tagme").one()
+        flag = db.session.query(Tags).filter(Tags.tagname == "tagme").one()
         image.tags.append(flag)
         db.session.commit()
     else:
         for t in range(len(taglist)):
             try:
-                _test = alltags.filter(Tags.tagname == taglist[t][1]).one()
+                _test = db.session.query(Tags).filter(Tags.tagname == taglist[t][1]).one()
                 image.tags.append(_test)
             except NoResultFound:
                 db.session.add(Tags(taglist[t][1], taglist[t][0]))
                 db.session.commit()
-                image.tags.append(alltags.filter(Tags.tagname == taglist[t][1]).one())
+                image.tags.append(db.session.query(Tags).filter(Tags.tagname == taglist[t][1]).one())
                 db.session.commit()
 
 

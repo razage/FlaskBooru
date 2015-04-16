@@ -1,9 +1,7 @@
 {% extends "images/boorubase.html" %}
 {% block tags %}
-    {% for t in images %}
-        {% for tag in t.tags %}
-            <li class="namespace-{{ tag.tagnamespace }}">{{ tag.tagname }}</li>
-        {% endfor %}
+    {% for t in tags %}
+        <li class="namespace-{{ t[0] }}">{{ t[1] }}</li>
     {% endfor %}
 {% endblock %}
 {% block images %}

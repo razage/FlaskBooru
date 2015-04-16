@@ -28,7 +28,7 @@ h2.sitetitle {
     padding: 0.313em 1.25em 0.188em 0.625em;
 }
 
-.navbar li {
+.navbar li, #contentlevel li {
     display: inline;
     font-weight: bold;
     list-style-type: none;
@@ -125,4 +125,12 @@ ul.taglist {
     border: 2px solid #FF0000;
     width: 800px;
     height: 600px;
+}
+
+.content {
+    padding: 0 20px 30px 20px;
+}
+
+.explanation {
+    font-size: 80%;
 }
