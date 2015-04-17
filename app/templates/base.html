@@ -15,6 +15,21 @@
                 <li>Statistics</li>
                 <li>About</li>
             </ul>
+            {% if g.user.is_anonymous() %}
+                <div class="navright">
+                    <form method="post" action="{{ url_for('users.login') }}">
+                        <input type="text" name="username" placeholder="username">
+                        <input type="password" name="password" placeholder="password">
+                        <input type="checkbox" name="remember_me" id="remember_me">
+                        <label for="remember_me" class="navform-text">Remember?</label>
+                        <input type="submit" value="Login">
+                    </form>
+                </div>
+            {% else %}
+                <div class="navright">
+                    <button onclick="location.href='{{ url_for('users.logout') }}';">Logout</button>
+                </div>
+            {% endif %}
         </div>
         {% with messages = get_flashed_messages() %}
             {% if messages %}

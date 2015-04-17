@@ -12,7 +12,7 @@ app.config.from_object('config')
 db = SQLAlchemy(app)
 
 lm = LoginManager(app)
-lm.login_view = 'users.login'
+lm.login_view = 'home'
 
 _createfolders = [app.config["IMAGEFOLDER"], app.config["IMAGETEMP"], app.config["THUMBFOLDER"]]
 

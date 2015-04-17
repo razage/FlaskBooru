@@ -17,6 +17,7 @@ input {
     color: #FFFFFF;
     margin-bottom: 1em;
     padding: 10px 20px 10px 20px;
+    overflow: hidden;
 }
 
 h2.sitetitle {
@@ -26,6 +27,7 @@ h2.sitetitle {
 
 .navbar {
     margin: 0;
+    float: left;
     padding: 5px 20px 3px 10px;
 }
 
@@ -132,6 +134,13 @@ ul.taglist {
     padding: 0 20px 30px 20px;
 }
 
-.explanation {
+.navright {
+    margin: 0 -15px 0 0;
+    padding: 5px 20px 3px 10px;
+    float: right;
+}
+
+.navform-text {
+    text-align: center;
     font-size: 80%;
 }
