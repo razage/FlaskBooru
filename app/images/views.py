@@ -1,4 +1,5 @@
 from datetime import datetime
+from math import ceil
 from operator import itemgetter
 from os import remove
 from os.path import join
@@ -16,7 +17,6 @@ from .utils import allowed_file, applytags, getimagehash, makethumbnail, moveima
 from app import app, db
 from app.decorators import do_nothing
 
-
 mod = Blueprint('images', __name__, url_prefix="/images")
 
 
@@ -30,12 +30,15 @@ imageindex_loginreq = login_required if app.config['LOGINREQUIRED']['imagelist']
 @imageindex_loginreq
 def imageindex(page):
     tags = []
+    totalpages = ceil(db.session.query(Images).count() / app.config["IMAGESPERPAGE"])
+    print(totalpages)
     images = db.session.query(Images).order_by(desc(Images.uploadtime)).offset(app.config["IMAGESPERPAGE"] * (page - 1)).limit(app.config["IMAGESPERPAGE"])
     for i in images:
         for t in i.tags:
             tags.append((t.tagnamespace, t.tagname))
     return render_template("images/imageindex.html", title="%s - Page %s" % (app.config["SITENAME"], page),
-                           images=images, tags=sorted(set(tags), key=itemgetter(0, 1)))
+                           images=images, tags=sorted(set(tags), key=itemgetter(0, 1)), totalpages=totalpages,
+                           curpage=page)
 
 
 upload_loginreq = login_required if app.config['LOGINREQUIRED']['upload'] else do_nothing

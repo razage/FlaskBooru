@@ -6,6 +6,20 @@
 {% endblock %}
 {% block images %}
     {% for i in images %}
-        <span class="thumbnail" onclick="location.href='{{ url_for('images.viewimage', imgname=i.imgname) }}';"><img src="{{ url_for('static', filename=config['THUMBFOLDERNAME'] + '/' + i.imgname) }}"></span>
+        <span class="thumbnail" onclick="location.href='{{ url_for('images.viewimage', imgname=i.imgname) }}';"><img
+                src="{{ url_for('static', filename=config['THUMBFOLDERNAME'] + '/' + i.imgname) }}"></span>
     {% endfor %}
+{% endblock %}
+{% block below %}
+    <div class="paginator">
+        <div class="pagination">
+            {% for n in range(totalpages) %}
+                {% if n + 1 == curpage %}
+                    <b>{{ n + 1 }}</b>
+                {% else %}
+                    <a href="{{ url_for("images.imageindex", page=n + 1) }}">{{ n + 1 }}</a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

@@ -7,5 +7,5 @@ from app import app
 
 class ImageUploadForm(Form):
     image = FileField("Image")
-    contentlevel = RadioField("Content Level", choices=app.config["CONTENTLEVELS"], coerce=int)
+    contentlevel = RadioField("Content Level", choices=app.config["CONTENTLEVELS"], coerce=int, default=0)
     tagfield = TextAreaField("Tags", [Optional()])

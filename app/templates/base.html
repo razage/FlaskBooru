@@ -9,7 +9,7 @@
         <div class="header">
             <h2 class="sitetitle">{{ config['SITENAME'] }}</h2>
             <ul class="navbar">
-                <li><a href="{{ url_for('users.login') }}">Profile</a></li>
+                <li><a href="{{ url_for('users.profile', user="anon") }}">Profile</a></li>
                 <li><a href="{{ url_for('images.imageindex', page=1) }}">Images</a></li>
                 <li>Tags</li>
                 <li>Statistics</li>

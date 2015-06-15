@@ -5,13 +5,17 @@ from .models import User
 from .utils import handlelogin
 from app import lm
 
-
 mod = Blueprint('users', __name__, url_prefix="/users")
 
 
 @lm.user_loader
 def load_user(uid):
     return User.query.get(int(uid))
+
+
+@mod.route('/profile/<string:user>')
+def profile(user):
+    return "This isn't implemented yet."
 
 
 @mod.route('/login', methods=['POST'])
