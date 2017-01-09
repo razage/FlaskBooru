@@ -1,5 +1,5 @@
 # Notice
-I've put this project on indefinite haitus. I don't know if I'll ever work on it again.
+This project is on indefinite haitus.
 
 ## Flaskbooru
 A Flask implementation of a [*booru](https://en.wikipedia.org/wiki/Imageboard#Danbooru-style_boards) application.
